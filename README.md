@@ -1,20 +1,40 @@
 # Instalación
+  ## Requisitos previos
+  
+  | Herramienta        | Versión               | Verificar                        |
+  |--------------------|-----------------------|----------------------------------|
+  | JDK 8 (Temurin 8)  | 1.8.x                 | `java -version` → `1.8.x`        |
+  | Maven *(opcional)* | 3.6.3+                | `mvn -v` → `Java version: 1.8`   |
+  | Node.js            | 18.19+, 20.11+ o 22   | `node -v`, `npm -v`              |
+  | SQL Server Express | 2019, 2022 o 2025     | —                                |
+  | SSMS               | Última versión        | —                                |
+  | Chrome / Postman   | —                     | —                                |
 
-  ┌────────────────────┬─────────────────────┬───────────────────────────────────────┐
-  │    Herramienta     │       Versión       │               Verificar               │  ├────────────────────┼─────────────────────┼───────────────────────────────────────┤
-  │ JDK 8 (Temurin 8)  │ 1.8.x               │ java -version → 1.8.x                 │
-  ├────────────────────┼─────────────────────┼───────────────────────────────────────┤
-  │ Maven (opcional)   │ 3.6.3+              │ mvn -v → Java version: 1.8            │
-  ├────────────────────┼─────────────────────┼───────────────────────────────────────┤
-  │ Node.js            │ 18.19+, 20.11+ o 22 │ node -v, npm -v                       │
-  ├────────────────────┼─────────────────────┼───────────────────────────────────────┤
-  │ SQL Server Express │ 2019, 2022 o 2025   │ —                                     │
-  ├────────────────────┼─────────────────────┼───────────────────────────────────────┤
-  │ SSMS               │ Última versión      │ —                                     │
-  ├────────────────────┼─────────────────────┼───────────────────────────────────────┤
-  │ Chrome / Postman   │ —                   │ —                                     │
-  └────────────────────┴─────────────────────┴───────────────────────────────────────┘
+## Pasos
 
-1.- Instalación Database ver documento "./Documentos/DB-Install"
-2.- Instalación Backend revisar: "./Documentos/Backend-Install"
-3.- Instalación Frontend revisar: "./Documentos/Frontend-Install"
+1. **Base de datos**: ver [DB-Install](./Documentos/DB-Install.docx)
+2. **Backend**: ver [Backend-Install](./Documentos/Backend-Install.docx)
+3. **Frontend**: ver [Frontend-Install](./Documentos/Frontend-Install.docx)
+
+> Seguir el orden indicado: el backend depende de la base de datos y el frontend del backend.
+
+## Desarrollo (`dev`)
+
+| Capa     | Comando                                                  |
+|----------|----------------------------------------------------------|
+| Frontend | `ng serve`                                               |
+| Backend  | `.\mvnw.cmd spring-boot:run -Dspring-boot.run.profiles=dev` |
+
+# Arquitectura 
+
+## Frontend
+
+![Arquitectura Frontend](./Documentos/Arquitectura/frontend.drawio.svg)
+
+## Backend
+
+![Arquitectura Backend](./Documentos/Arquitectura/backend.drawio.svg)
+
+## Base de datos
+
+![Arquitectura Base de datos](./Documentos/Arquitectura/db.drawio.svg)
