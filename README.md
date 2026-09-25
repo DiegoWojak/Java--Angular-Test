@@ -13,8 +13,8 @@
 
 ## Pasos
 
-1. **Base de datos**: ver [DB-Install](./Documentos/DB-Install.md)
-2. **Backend**: ver [Backend-Install](./Documentos/Backend-Install.md)
-3. **Frontend**: ver [Frontend-Install](./Documentos/Frontend-Install.md)
+1. **Base de datos**: ver [DB-Install](./Documentos/DB-Install.docx)
+2. **Backend**: ver [Backend-Install](./Documentos/Backend-Install.docx)
+3. **Frontend**: ver [Frontend-Install](./Documentos/Frontend-Install.docx)
 
 > Seguir el orden indicado: el backend depende de la base de datos y el frontend del backend.
