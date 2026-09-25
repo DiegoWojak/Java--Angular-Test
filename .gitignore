@@ -17,3 +17,4 @@ Thumbs.db
 
 # Config local (usar .env.example como plantilla)
 .env
+.env.production
