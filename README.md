@@ -38,3 +38,18 @@
 ## Base de datos
 
 ![Arquitectura Base de datos](./Documentos/Arquitectura/db.drawio.svg)
+
+## Implementation
+Fase 1.-
+La estructura base de cada capa se implementó siguiendo los diagramas de [Arquitectura](#arquitectura), en un commit por capa:
+
+| Capa          | Commit                                                              | Contenido                                                                 |
+|---------------|---------------------------------------------------------------------|---------------------------------------------------------------------------|
+| Frontend      | [`f224665`](https://github.com/DiegoWojak/NOMBRE-REPO/commit/f224665) | Vistas, clases, interfaces y servicios que replican el modelo front |
+| Backend       | [`4883988`](https://github.com/DiegoWojak/NOMBRE-REPO/commit/4883988) | Jerarquía de clases según el diagrama y extensiones base      |
+| Base de datos | [`11a3d07`](https://github.com/DiegoWojak/NOMBRE-REPO/commit/11a3d07) | Creación de la BD, tablas, datos iniciales para el backend y procedures   
+
+Sin problemas de compilación
+
+Fase 2.- 
+Consiste en amendar conexiones y requerimientos siguiendo el orden Base de datos &rarr; Backend &rarr; Frontend
