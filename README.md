@@ -176,3 +176,5 @@ Pruebas en ambiente `dev` para la versión **MVP 0.1**.
 </details>
 
 Fase 4
+
+Pase a master -> Version 0.1 
