@@ -6,6 +6,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+@Getter 
 public class ApiError {
     private final LocalDateTime timestamp = LocalDateTime.now();
     private final int status;
