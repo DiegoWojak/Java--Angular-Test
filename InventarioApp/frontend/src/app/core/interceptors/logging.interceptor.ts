@@ -3,16 +3,28 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
+  HttpResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
+import { LoggerService } from '../services/logger.service';
 
 @Injectable()
 export class LoggingInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private logger: LoggerService) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    return next.handle(request);
+  intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    const inicio = Date.now();
+    return next.handle(req).pipe(
+      tap({
+        next: event => {
+          if (event instanceof HttpResponse) {
+            this.logger.debug(`${req.method} ${req.urlWithParams} -> ${event.status} (${Date.now() - inicio} ms)`);
+          }
+        },
+        error: err => this.logger.warn(`${req.method} ${req.urlWithParams} -> ${err.status} (${Date.now() - inicio} ms)`)
+      })
+    );
   }
 }

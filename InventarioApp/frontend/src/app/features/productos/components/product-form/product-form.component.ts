@@ -4,8 +4,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ProductService } from '../../services/product.service';
 import { MessageService } from 'primeng/api';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ApiError } from '../../../../models/api-error.model';
+
 import { noWhitespace } from '../../../../shared/validators/no-whitespace.validator';
+import { ApiError } from '../../../../core/models/api-error.model';
 
 @Component({
   selector: 'app-product-form',
