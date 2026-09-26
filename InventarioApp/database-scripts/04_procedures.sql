@@ -9,7 +9,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
     SELECT id, nombre, descripcion, cantidad, precio, fecha_creacion, fecha_actualizacion
-    FROM dbo.products
+    FROM dbo.productos
     WHERE @nombre IS NULL OR @nombre = '' OR nombre LIKE '%' + @nombre + '%'
     ORDER BY nombre;
 END
@@ -21,12 +21,12 @@ AS
 BEGIN
     SET NOCOUNT ON;
     SELECT id, nombre, descripcion, cantidad, precio, fecha_creacion, fecha_actualizacion
-    FROM dbo.products
+    FROM dbo.productos
     WHERE id = @id;
 END
 GO
 
-CREATE OR ALTER PROCEDURE dbo.sp_producto_insertar
+CREATE OR ALTER PROCEDURE dbo.sp_product_insertar
     @nombre      VARCHAR(100),
     @descripcion VARCHAR(255),
     @cantidad    INT,
@@ -50,7 +50,7 @@ CREATE OR ALTER PROCEDURE dbo.sp_product_actualizar
 AS
 BEGIN
     SET NOCOUNT ON;
-    UPDATE dbo.products
+    UPDATE dbo.productos
        SET nombre = @nombre,
            descripcion = @descripcion,
            cantidad = @cantidad,
@@ -67,7 +67,7 @@ CREATE OR ALTER PROCEDURE dbo.sp_product_eliminar
 AS
 BEGIN
     SET NOCOUNT ON;
-    DELETE FROM dbo.products WHERE id = @id;
+    DELETE FROM dbo.productos WHERE id = @id;
     SELECT @@ROWCOUNT AS filas_afectadas;
 END
 GO

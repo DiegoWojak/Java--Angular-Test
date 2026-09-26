@@ -19,12 +19,12 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class ProductRequest {
 
-    @Schema(example = "Mouse Logitech M185")
+    @Schema(example = "Mouse 123")
     @NotBlank(message = "El nombre es obligatorio")
     @Size(max = 100, message = "El nombre admite máximo 100 caracteres")
     private String nombre;
 
-    @Schema(example = "Mouse inalámbrico USB")
+    @Schema(example = "Instrumento adaptable conexión inalámbrico USB")
     @Size(max = 255, message = "La descripción admite máximo 255 caracteres")
     private String descripcion;
 
