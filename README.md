@@ -52,4 +52,12 @@ La estructura base de cada capa se implementó siguiendo los diagramas de [Arqui
 Sin problemas de compilación
 
 Fase 2.- 
-Consiste en amendar conexiones y requerimientos siguiendo el orden Base de datos &rarr; Backend &rarr; Frontend
+
+Ajuste de conexiones y requerimientos, siguiendo el orden Base de datos &rarr; Backend &rarr; Frontend.
+
+| Capa          | Objetivo                                                                                         | Evidencia |
+|---------------|--------------------------------------------------------------------------------------------------|-----------|
+| Base de datos | Procedures funcionales                                                                           | <img width="389" alt="Procedures funcionales" src="https://github.com/user-attachments/assets/0e805fd3-7a18-47b2-8f01-f24d71982ac4" /> |
+| Backend       | Endpoints de Producto y Usuarios funcionales desde Swagger, ambos protegidos con JWT              | <img width="487" alt="Swagger con endpoints de Producto y Usuarios" src="https://github.com/user-attachments/assets/bb0acc5a-d902-411e-a626-d5ca70d1c1c8" /> |
+| Frontend      | Login funcional y vista de productos   | <img width="629" alt="Login y vista de productos" src="https://github.com/user-attachments/assets/7324070c-a009-4358-8998-b1c75091c55a" /> |
+
