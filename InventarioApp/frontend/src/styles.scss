@@ -83,3 +83,111 @@ body { margin: 0; font: 15px/1.5 var(--f-body); -webkit-font-smoothing: antialia
 .topbar .brand-mark { width: 30px; height: 30px; border-radius: 9px; }
 .user { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 14px; }
 .user span {color: var(--text); font-weight: 600; }
+
+.field { display: flex; flex-direction: column; gap: 8px; }
+.field label {
+  display: flex; justify-content: space-between; gap: 8px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted);
+}
+.field label .mono { text-transform: none; letter-spacing: 0; font-weight: 500; color: var(--text); }
+.field .p-icon-field, .field input, .field textarea, .field .p-inputnumber, .field .p-password, .field .p-dropdown { width: 100%; }
+.field .p-slider { margin: 6px 8px 4px; }
+/* SelectButton de PrimeNG 17: div.p-selectbutton > div.p-button (uno por opción) */
+.field .p-selectbutton { display: flex; width: 100%; }
+.field .p-selectbutton .p-button { flex: 1; justify-content: center; padding-inline: 4px; white-space: nowrap; font-size: 13px; }
+
+.shell {
+  max-width: 1240px; margin: 0 auto; padding: 24px 24px 48px;
+  display: flex; flex-direction: column; gap: 24px;
+}
+.top { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.top h1 { margin: 0; font: 700 30px/1 var(--f-display); letter-spacing: -0.02em; }
+.top-side { display: flex; align-items: center; gap: 16px; }
+.count { margin: 0; color: var(--muted); font-size: 13px; }
+.count strong { color: var(--text); font: 600 20px var(--f-mono); margin-right: 2px; }
+
+.body { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 24px; align-items: start; }
+.filters { position: sticky; top: 16px; display: flex; flex-direction: column; gap: 20px; padding: 20px; }
+
+.results .p-dataview, .results .p-dataview-header, .results .p-dataview-content,
+.results .p-dataview-paginator-bottom, .results .p-paginator { background: transparent; border: 0; }
+.results .p-dataview-header { padding: 0 0 16px; }
+.results .p-dataview-emptymessage { padding: 48px 0; color: var(--muted); text-align: center; }
+.toolbar { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; }
+.list { display: flex; flex-direction: column; gap: 12px; }
+
+.card, .line {
+  --rx: 0deg; --ry: 0deg; --mx: 50%; --my: 50%;
+  position: relative; cursor: pointer; outline: none;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background:
+    radial-gradient(240px circle at var(--mx) var(--my), rgba(255, 255, 255, .06), transparent 60%),
+    var(--panel);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform .25s ease-out, border-color .25s;
+  animation: rise .5s cubic-bezier(.2, .8, .2, 1) both;
+  animation-delay: calc(min(var(--i, 0), 8) * 40ms);
+}
+.card:hover, .line:hover, .card:focus-visible, .line:focus-visible { border-color: rgba(98, 217, 209, .55); }
+.card:focus-visible, .line:focus-visible { box-shadow: 0 0 0 2px var(--accent); }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+
+.thumb {
+  --h: 180;
+  position: relative; display: grid; place-items: center;
+  aspect-ratio: 4 / 3; max-width: 100%;
+  border-radius: calc(var(--radius) - 4px); margin: 6px 6px 0; overflow: hidden;
+  background:
+    radial-gradient(80% 70% at 30% 20%, hsl(var(--h) 80% 62% / .55), transparent 70%),
+    radial-gradient(70% 70% at 90% 100%, hsl(calc(var(--h) + 60) 75% 55% / .45), transparent 70%),
+    hsl(var(--h) 35% 14%);
+}
+.thumb i { font-size: 44px; color: hsl(var(--h) 90% 88%); filter: drop-shadow(0 6px 18px hsl(var(--h) 90% 50% / .6)); }
+.thumb.sm { width: 84px; aspect-ratio: 1; margin: 0; flex: none; }
+.thumb.sm i { font-size: 26px; }
+.thumb.xl { margin: 0 0 16px; }
+.thumb.xl i { font-size: 64px; }
+
+.card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; }
+.sku { font-size: 11px; color: var(--muted); letter-spacing: .02em; }
+.card h2, .line h2 { margin: 0; font: 600 17px/1.25 var(--f-display); letter-spacing: -0.01em; text-wrap: balance; }
+.card .blurb {
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; min-height: 2.9em;
+}
+.row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 6px 8px; margin-top: 4px; }
+.row .p-tag, .price { white-space: nowrap; }
+.price { font-size: 18px; font-weight: 600; color: var(--text); }
+.price.big { font-size: 28px; }
+
+.line { display: flex; align-items: center; gap: 16px; padding: 10px; }
+.line-main { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.blurb { margin: 0; color: var(--muted); font-size: 13px; max-width: 62ch; }
+.line-side { display: flex; flex-direction: column; align-items: flex-end; gap: 8px; flex: none; }
+.line-actions { display: flex; gap: 2px; }
+
+.detail.p-sidebar { width: min(440px, 100vw); background: var(--panel-solid); border-left: 1px solid var(--line); }
+.detail .p-sidebar-header { justify-content: space-between; }
+.detail-title { font: 700 20px var(--f-display); }
+.detail-blurb { margin: 8px 0 12px; line-height: 1.6; }
+.detail-price { display: flex; align-items: baseline; gap: 12px; margin: 16px 0 8px; }
+.detail-meta { margin: 0 0 20px; color: var(--muted); font-size: 12px; }
+.detail-actions { display: flex; gap: 10px; }
+.detail-actions .p-button { flex: 1; }
+
+@media (max-width: 860px) {
+  .body { grid-template-columns: 1fr; }
+  .filters { position: static; }
+}
+@media (max-width: 520px) {
+  .shell, .topbar { padding-left: 16px; padding-right: 16px; }
+  .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .line { align-items: flex-start; }
+  .line .blurb { display: none; }
+  .thumb.sm { width: 64px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card, .line { animation: none; transition: none; transform: none; }
+}

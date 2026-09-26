@@ -1,53 +1,135 @@
-<div class="page">
-  <p-toolbar styleClass="mb-3">
-    <div class="p-toolbar-group-start">
-      <h2 class="title">Productos</h2>
+<div class="shell">
+  <header class="top">
+    <div>
+      <h1>Productos</h1>
+      <p class="sub">Catálogo del inventario</p>
     </div>
-    <div class="p-toolbar-group-end toolbar-end">
-      <p-iconField iconPosition="left">
-        <p-inputIcon styleClass="pi pi-search" />
-        <input type="text" pInputText [formControl]="busqueda" placeholder="Buscar por nombre..." aria-label="Buscar por nombre" />
-      </p-iconField>
+    <div class="top-side">
+      <p class="count" #countEl>
+        <strong>{{ visibles().length }}</strong> de {{ productos().length }} productos
+      </p>
       <p-button label="Nuevo" icon="pi pi-plus" (onClick)="nuevo()" />
     </div>
-  </p-toolbar>
+  </header>
 
-  <p-table [value]="productos" [loading]="loading" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]"
-           dataKey="id" [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-striped">
-    <ng-template pTemplate="header">
-      <tr>
-        <th pSortableColumn="nombre">Nombre <p-sortIcon field="nombre" /></th>
-        <th>Descripción</th>
-        <th pSortableColumn="cantidad" class="num">Cantidad <p-sortIcon field="cantidad" /></th>
-        <th pSortableColumn="precio" class="num">Precio <p-sortIcon field="precio" /></th>
-        <th class="acciones">Acciones</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-p>
-      <tr>
-        <td>{{ p.nombre }}</td>
-        <td>{{ p.descripcion || '—' }}</td>
-        <td class="num">{{ p.cantidad }}</td>
-        <td class="num">{{ p.precio | currency: 'PEN' : 'S/ ' }}</td>
-        <td class="acciones">
-          <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" pTooltip="Editar" (onClick)="editar(p)"
-                    [attr.aria-label]="'Editar ' + p.nombre" />
-          <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" pTooltip="Eliminar"
-                    (onClick)="confirmarEliminar(p)" [attr.aria-label]="'Eliminar ' + p.nombre" />
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="5" class="empty">No se encontraron productos.</td>
-      </tr>
-    </ng-template>
-  </p-table>
+  <div class="body">
+    <aside class="filters glass" aria-label="Filtros">
+      <div class="field">
+        <label for="q">Buscar</label>
+        <p-iconField iconPosition="left">
+          <p-inputIcon styleClass="pi pi-search" />
+          <input pInputText id="q" type="text" placeholder="Nombre del producto" [formControl]="busqueda" />
+        </p-iconField>
+      </div>
+
+      <div class="field">
+        <label>Precio <span class="mono">S/ {{ rangoPrecio()[0] | number }} – {{ rangoPrecio()[1] | number }}</span></label>
+        <p-slider [ngModel]="rangoPrecio()" (ngModelChange)="onPrecio($event)" [range]="true"
+                  [min]="0" [max]="precioMax()" [step]="precioPaso()" ariaLabel="Rango de precio" />
+      </div>
+
+      <div class="field">
+        <label>Stock</label>
+        <p-selectButton [options]="stockOpciones" optionLabel="label" optionValue="value" [allowEmpty]="false"
+                        [ngModel]="filtroStock()" (ngModelChange)="onStock($event)" />
+      </div>
+
+      <p-button label="Limpiar filtros" icon="pi pi-filter-slash" [text]="true" severity="secondary"
+                (onClick)="limpiarFiltros()" [disabled]="!hayFiltros() && !busqueda.value" />
+    </aside>
+
+    <main class="results">
+      <p-dataView [value]="visibles()" [layout]="layout()" [loading]="loading()" [rows]="8" [paginator]="true"
+                  [alwaysShowPaginator]="false" emptyMessage="Ningún producto coincide con estos filtros.">
+        <ng-template pTemplate="header">
+          <div class="toolbar">
+            <p-dropdown [options]="ordenOpciones" optionLabel="label" optionValue="value"
+                        [ngModel]="orden()" (ngModelChange)="onOrden($event)" ariaLabel="Ordenar" />
+            <p-selectButton [options]="layoutOpciones" optionValue="value" [allowEmpty]="false"
+                            [ngModel]="layout()" (ngModelChange)="onLayout($event)">
+              <ng-template let-o pTemplate="item">
+                <i [class]="o.icon" [attr.aria-label]="o.label"></i>
+              </ng-template>
+            </p-selectButton>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="grid" let-items>
+          <div class="grid">
+            @for (p of items; track p.id; let i = $index) {
+              <article class="card" glHover [style.--i]="i" tabindex="0"
+                       (click)="abrir(p)" (keydown.enter)="abrir(p)" [attr.aria-label]="p.nombre">
+                <div class="thumb" [style.--h]="hueDe(p)">
+                  <i class="pi {{ iconoDe(p) }}" aria-hidden="true"></i>
+                </div>
+                <div class="card-body">
+                  <span class="sku mono">#{{ p.id }}</span>
+                  <h2>{{ p.nombre }}</h2>
+                  <p class="blurb">{{ p.descripcion || 'Sin descripción' }}</p>
+                  <div class="row">
+                    <span class="price mono">{{ p.precio | currency: 'PEN' : 'S/ ' }}</span>
+                    <p-tag [value]="stockLabel(p)" [severity]="stockSeverity(p)" />
+                  </div>
+                </div>
+              </article>
+            }
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="list" let-items>
+          <div class="list">
+            @for (p of items; track p.id; let i = $index) {
+              <article class="line" glHover [style.--i]="i" tabindex="0"
+                       (click)="abrir(p)" (keydown.enter)="abrir(p)" [attr.aria-label]="p.nombre">
+                <div class="thumb sm" [style.--h]="hueDe(p)"><i class="pi {{ iconoDe(p) }}" aria-hidden="true"></i></div>
+                <div class="line-main">
+                  <span class="sku mono">#{{ p.id }} · {{ p.cantidad }} u.</span>
+                  <h2>{{ p.nombre }}</h2>
+                  <p class="blurb">{{ p.descripcion || 'Sin descripción' }}</p>
+                </div>
+                <div class="line-side">
+                  <span class="price mono">{{ p.precio | currency: 'PEN' : 'S/ ' }}</span>
+                  <p-tag [value]="stockLabel(p)" [severity]="stockSeverity(p)" />
+                  <div class="line-actions">
+                    <p-button icon="pi pi-pencil" [rounded]="true" [text]="true" pTooltip="Editar"
+                              (onClick)="$event.stopPropagation(); editar(p)" [attr.aria-label]="'Editar ' + p.nombre" />
+                    <p-button icon="pi pi-trash" [rounded]="true" [text]="true" severity="danger" pTooltip="Eliminar"
+                              (onClick)="$event.stopPropagation(); confirmarEliminar(p)" [attr.aria-label]="'Eliminar ' + p.nombre" />
+                  </div>
+                </div>
+              </article>
+            }
+          </div>
+        </ng-template>
+      </p-dataView>
+    </main>
+  </div>
 </div>
 
-<p-dialog [(visible)]="dialogVisible" [header]="productoSeleccionado ? 'Editar producto' : 'Nuevo producto'"
-          [modal]="true" [style]="{ width: '34rem' }" [breakpoints]="{ '575px': '95vw' }" [draggable]="false">
-  @if (dialogVisible) {
-    <app-product-form [producto]="productoSeleccionado" (guardado)="onGuardado()" (cancelado)="dialogVisible = false" />
+<p-sidebar [(visible)]="drawerVisible" position="right" styleClass="detail" appendTo="body">
+  <ng-template pTemplate="header">
+    <span class="detail-title">{{ drawerTitulo() }}</span>
+  </ng-template>
+  @if (drawerVisible && modo() === 'form') {
+    <app-product-form [producto]="seleccionado()" (guardado)="onGuardado()" (cancelado)="onCancelarForm()" />
+  } @else {
+    @if (seleccionado(); as p) {
+    <div class="thumb xl" [style.--h]="hueDe(p)"><i class="pi {{ iconoDe(p) }}" aria-hidden="true"></i></div>
+    <p class="sku mono">#{{ p.id }}</p>
+    <p class="detail-blurb">{{ p.descripcion || 'Sin descripción' }}</p>
+    <div class="detail-price">
+      <span class="price mono big">{{ p.precio | currency: 'PEN' : 'S/ ' }}</span>
+      <p-tag [value]="stockLabel(p)" [severity]="stockSeverity(p)" />
+    </div>
+    <p class="detail-meta mono">
+      {{ p.cantidad }} unidades
+      @if (p.fechaActualizacion) { · actualizado {{ p.fechaActualizacion | date: 'dd/MM/yyyy HH:mm' }} }
+      @else if (p.fechaCreacion) { · creado {{ p.fechaCreacion | date: 'dd/MM/yyyy HH:mm' }} }
+    </p>
+    <div class="detail-actions">
+      <p-button label="Editar" icon="pi pi-pencil" [outlined]="true" (onClick)="editar(p)" />
+      <p-button label="Eliminar" icon="pi pi-trash" severity="danger" [outlined]="true" (onClick)="confirmarEliminar(p)" />
+    </div>
+    }
   }
-</p-dialog>
+</p-sidebar>
