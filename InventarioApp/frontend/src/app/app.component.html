@@ -2,8 +2,8 @@
     <header class="topbar">
         <span class="brand"><i class="pi pi-box"></i> Inventario</span>
         <span class="user">
-            <i class="pi pi-user"></i> 
-            <p-button label="Salir" icon="pi pi-sign-out" [text]="true" size="small" />
+            <i class="pi pi-user"></i> {{ username }}
+            <p-button label="Salir" icon="pi pi-sign-out" [text]="true" size="small" (onClick)="auth.logout()"/>
         </span>
     </header>
 }
