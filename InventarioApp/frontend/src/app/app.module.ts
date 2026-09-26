@@ -11,6 +11,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { CoreModule } from './core/core.module';
 
+import { ShaderDirective } from './shared/gl/shader.directive';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -22,6 +24,7 @@ import { CoreModule } from './core/core.module';
     ButtonModule, 
     ToastModule, 
     ConfirmDialogModule, 
+    ShaderDirective,
     AppRoutingModule
   ],
   bootstrap: [AppComponent]

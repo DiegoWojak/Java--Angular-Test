@@ -49,3 +49,37 @@ body { margin: 0; font: 15px/1.5 var(--f-body); -webkit-font-smoothing: antialia
 .w-full { width: 100%; }
 
 .p-error { color: var(--danger); font-size: 12px; }   /* FieldErrorComponent */
+
+.backdrop {
+  position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; display: block;
+  /* fallback si no hay WebGL2 o el usuario prefiere menos movimiento */
+  background:
+    radial-gradient(60% 50% at 20% 10%, rgba(98, 217, 209, .18), transparent 70%),
+    radial-gradient(50% 40% at 90% 80%, rgba(232, 97, 140, .14), transparent 70%),
+    var(--base);
+}
+.app-content { position: relative; z-index: 1; min-height: 100vh; }
+
+/* Panel translúcido reutilizable (filtros, login, cards) */
+.glass {
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: var(--panel); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+}
+
+/* ---------------------------------------------------------------- marca y barra superior */
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-mark {
+  width: 38px; height: 38px; border-radius: 11px; flex: none;
+  background: conic-gradient(from 200deg, var(--accent), var(--accent-2), var(--accent));
+  box-shadow: 0 0 28px rgba(98, 217, 209, .35);
+}
+.brand-name { display: block; font: 700 20px/1.1 var(--f-display); letter-spacing: -0.02em; }
+.sub { display: block; margin: 2px 0 0; color: var(--muted); font-size: 13px; }
+
+.topbar {
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  max-width: 1240px; margin: 0 auto; padding: 18px 24px 0;
+}
+.topbar .brand-mark { width: 30px; height: 30px; border-radius: 9px; }
+.user { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 14px; }
+.user span {color: var(--text); font-weight: 600; }
