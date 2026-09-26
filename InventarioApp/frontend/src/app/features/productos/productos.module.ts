@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ProductListComponent } from './components/product-list/product-list.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
-
-
+import { SharedModule } from 'primeng/api';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,8 @@ import { ProductFormComponent } from './components/product-form/product-form.com
     ProductFormComponent
   ],
   imports: [
-    CommonModule
+    SharedModule,
+    RouterModule.forChild([{ path: '', component: ProductListComponent}])
   ]
 })
 export class ProductosModule { }
