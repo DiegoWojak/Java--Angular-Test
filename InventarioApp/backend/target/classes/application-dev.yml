@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=MiBaseDev;encrypt=false;trustServerCertificate=true
+    username: ${DB_USER:sa}
+    password: ${DB_PASSWORD:TuPasswordLocal}
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+app:
+  cors:
+    allowed-origins: http://localhost:4200

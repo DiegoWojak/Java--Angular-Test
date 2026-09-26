@@ -1,1 +1,16 @@
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\shared\domain\ResourceNotFoundException.java
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\shared\application\BaseCrudService.java
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\product\application\ProductService.java
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\product\domain\Product.java
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\shared\domain\BaseRepository.java
 D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\InventarioApplication.java
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\shared\web\GlobalExceptionHandler.java
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\shared\infrastructure\persistence\BaseSpRepository.java
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\auth\application\AuthService.java
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\product\infrastructure\ProductSpRepository.java
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\shared\web\ApiError.java
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\product\application\dto\ProductResponse.java
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\product\application\dto\ProductRequest.java
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\product\domain\ProductRepository.java
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\shared\domain\BusinessRuleException.java
+D:\Workspace\Testing\practice-ingreso-side\InventarioApp\backend\src\main\java\com\inventario\product\web\ProductController.java
