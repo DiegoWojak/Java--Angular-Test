@@ -39,6 +39,11 @@
 
 ![Arquitectura Base de datos](./Documentos/Arquitectura/db.drawio.svg)
 
+Consideraciones:
+> código compartido (`shared`).
+
+El código repetido entre recursos se escribe una sola vez en `shared` (backend) y en `core`/`shared` (frontend). Cada recurso nuevo **hereda** de esas bases y solo  define lo que le es propio.
+
 ## Implementation
 Fase 1.-
 La estructura base de cada capa se implementó siguiendo los diagramas de [Arquitectura](#arquitectura), en un commit por capa:
