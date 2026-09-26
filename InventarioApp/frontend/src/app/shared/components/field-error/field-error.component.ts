@@ -13,7 +13,7 @@ const MENSAJES: Record<string, (e: any) => string> = {
 
 @Component({
   selector: 'app-field-error',
-  templateUrl: `@if (mensaje) { <small class="p-error block mt-1">{{ mensaje }}</small> }`,
+  template: `@if (mensaje) { <small class="p-error block mt-1">{{ mensaje }}</small> }`,
 })
 export class FieldErrorComponent {
   @Input({ required: true }) control!: AbstractControl;

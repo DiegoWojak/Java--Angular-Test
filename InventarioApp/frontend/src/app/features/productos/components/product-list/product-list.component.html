@@ -12,8 +12,7 @@
     </div>
   </p-toolbar>
 
-
-<p-table [value]="productos" [loading]="loading" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]"
+  <p-table [value]="productos" [loading]="loading" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[10, 25, 50]"
            dataKey="id" [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-striped">
     <ng-template pTemplate="header">
       <tr>
@@ -40,7 +39,7 @@
     </ng-template>
     <ng-template pTemplate="emptymessage">
       <tr>
-        <td colspan="5" class="empty">No se encontraro productos almacenados.</td>
+        <td colspan="5" class="empty">No se encontraron productos.</td>
       </tr>
     </ng-template>
   </p-table>
@@ -49,6 +48,6 @@
 <p-dialog [(visible)]="dialogVisible" [header]="productoSeleccionado ? 'Editar producto' : 'Nuevo producto'"
           [modal]="true" [style]="{ width: '34rem' }" [breakpoints]="{ '575px': '95vw' }" [draggable]="false">
   @if (dialogVisible) {
-    <app-producto-form [producto]="productoSeleccionado" (guardado)="onGuardado()" (cancelado)="dialogVisible = false" />
+    <app-product-form [producto]="productoSeleccionado" (guardado)="onGuardado()" (cancelado)="dialogVisible = false" />
   }
 </p-dialog>

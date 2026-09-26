@@ -6,5 +6,5 @@ import { AuthService } from './core/services/auth.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  
+  constructor(readonly auth: AuthService) {}
 }

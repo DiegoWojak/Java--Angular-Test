@@ -1,7 +1,13 @@
-<header class="topbar">
-    <span class="brand"><i class="pi pi-box"></i> Inventario</span>
-    <span class="user">
-        <i class="pi pi-user"></i> 
-        <p-button label="Salir" icon="pi pi-sign-out" [text]="true" size="small" />
-    </span>
-</header>
+@if (auth.username(); as username) {
+    <header class="topbar">
+        <span class="brand"><i class="pi pi-box"></i> Inventario</span>
+        <span class="user">
+            <i class="pi pi-user"></i> 
+            <p-button label="Salir" icon="pi pi-sign-out" [text]="true" size="small" />
+        </span>
+    </header>
+}
+
+<p-toast position="top-right" />
+<p-confirmDialog />
+<router-outlet />
