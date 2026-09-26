@@ -1,5 +1,5 @@
 # Backend
-backend/target/
+./backend/target/
 *.class
 *.log
 
@@ -14,6 +14,7 @@ frontend/.angular/
 *.iml
 .DS_Store
 Thumbs.db
+
 
 # Config local (usar .env.example como plantilla)
 .env

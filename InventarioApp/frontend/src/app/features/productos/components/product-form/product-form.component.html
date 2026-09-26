@@ -1,1 +1,33 @@
-<p>product-form works!</p>
+<form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+  <div class="field">
+    <label for="nombre">Nombre *</label>
+    <input id="nombre" type="text" pInputText formControlName="nombre" maxlength="100" />
+    <app-field-error [control]="form.controls.nombre" />
+  </div>
+
+  <div class="field">
+    <label for="descripcion">Descripción</label>
+    <textarea id="descripcion" pInputTextarea formControlName="descripcion" rows="3" maxlength="255"></textarea>
+    <app-field-error [control]="form.controls.descripcion" />
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label for="cantidad">Cantidad *</label>
+      <p-inputNumber inputId="cantidad" formControlName="cantidad" [min]="0" [max]="1000000" [useGrouping]="false" />
+      <app-field-error [control]="form.controls.cantidad" />
+    </div>
+
+    <div class="field">
+      <label for="precio">Precio (S/) *</label>
+      <p-inputNumber inputId="precio" formControlName="precio" mode="decimal" [minFractionDigits]="2"
+                     [maxFractionDigits]="2" [min]="0" />
+      <app-field-error [control]="form.controls.precio" />
+    </div>
+  </div>
+
+  <div class="actions">
+    <p-button type="button" label="Cancelar" severity="secondary" [text]="true" (onClick)="cancelado.emit()" />
+    <p-button type="submit" [label]="esEdicion ? 'Guardar cambios' : 'Crear'" icon="pi pi-check" [loading]="saving" />
+  </div>
+</form>
