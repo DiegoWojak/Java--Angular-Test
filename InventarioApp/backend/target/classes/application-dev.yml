@@ -1,14 +1,16 @@
 spring:
-  datasource:
-    url: jdbc:sqlserver://localhost:1433;databaseName=MiBaseDev;encrypt=false;trustServerCertificate=true
-    username: ${DB_USER:sa}
-    password: ${DB_PASSWORD:TuPasswordLocal}
-    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: none
+    datasource:
+      url: jdbc:sqlserver://localhost:1433;databaseName=InventarioDB;encrypt=true;trustServerCertificate=true
+      username: ${DB_USER:inventario_app}
+      password: ${DB_PASSWORD:Inventario#2026}
 
 app:
+  jwt:
+    secret: dGVzdC1wcmFjdGljZS1pbmdyZXNvLWludmVudGFyaW8tc2VjcmV0LWtleS0yMDI2
   cors:
     allowed-origins: http://localhost:4200
+
+logging:
+  level:
+    com.inventario: DEBUG
+    org.springframework.jdbc.core.JdbcTemplate: DEBUG
